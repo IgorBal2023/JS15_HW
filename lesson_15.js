@@ -1,6 +1,6 @@
 //  Quadratic equation
 console.log(`Quadratic equation`);
-const calculate = (a,b,c) => {
+let calculate = (a,b,c) => {
        let d = b*b - 4*a*c;
        if (d > 0){
         x1 = (-b + Math.sqrt(d))/2*a;
@@ -8,28 +8,28 @@ const calculate = (a,b,c) => {
        }
        else if (d === 0){
         x1 = (-b + Math.sqrt(d))/2*a;
-        x2 = null;
+        x2 = null;// x2 : x1 так может правильней, надо проверить
        }
        else if (d < 0){
         x1 = null;
         x2 = null;
        }
 }
-const roots1 = calculate(1, 5, 6);
+ calculate(1, 5, 6);
 let result1 = {
 x1: x1,
 x2: x2
 };
 console.log(result1);
 
-const roots2 = calculate(1, 4, 4);
+ calculate(1, 4, 4);
 let result2 = {
 x1: x1,
 x2: x2
 };
 console.log(result2);
 
-const roots3 = calculate(1, 1, 1);
+calculate(1, 1, 1);
 let result3 = {
 x1: x1,
 x2: x2
@@ -50,10 +50,10 @@ console.log(factorial(7));
 
 
 function factorial_2(n) {
-    return (n != 1) ? n * factorial(n - 1) : 1;
+    return (n != 1) ? n * factorial_2(n - 1) : 1;
   }
   
-  console.log( factorial_2(6) );
+  console.log( factorial_2(7) );
 
 
 console.log(``);
