@@ -73,39 +73,62 @@ const start = (nameTest) => {
 
 // ==========================================================================
 
-nameTest = `number is Armstrong Number`;
+nameTest = `Prime numbers`;
 start(nameTest);
 
-const isArmstrong = (n) => {
-  let numbersStr = n.toString();
-  let numbersArr = [];
-  for (let i = 0;i <= numbersStr.length-1;i++){
-  const digit = parseInt(numbersStr[i]);
-  numbersArr.push(digit);
-  } 
-  const powArr = numbersArr.reduce(function(acc,currentValue){
-  const  digitPow =  Math.pow(currentValue,numbersArr.length);
-  if( acc === undefined){
-    acc = [];
+const isPrime = (numberPrime) => {
+  if (numberPrime <= 1){
+    return false;
   }
-  acc.push(digitPow);
-  return acc;    
- 
-    },[]);
-  const sumAccPow = powArr.reduce(function name(acc,currentValue) {
-    return acc + currentValue;    
-  },0);
-    if (n === sumAccPow) {
-     console.log( n + `  it's Armstrong number ` + `//`+true);      
+for (let i = 2; i <= numberPrime-1; i++){
+          if (numberPrime % i === 0){
+         return false;
+      }
     }
-    else
-    console.log(n + `  don't Armstrong number ` + `//`+false); 
-  } 
+      return true;          
+}
+console.log(isPrime(1));   // false
+console.log(isPrime(4));
+console.log(isPrime(6));
+console.log(isPrime(5));   // true
+console.log(isPrime(9));  
+console.log(isPrime(31));
+console.log(isPrime(37));
+// ==========================================================================
+
+// nameTest = `number is Armstrong Number`;
+// start(nameTest);
+
+// const isArmstrong = (n) => {
+//   let numbersStr = n.toString();
+//   let numbersArr = [];
+//   for (let i = 0;i <= numbersStr.length-1;i++){
+//   const digit = parseInt(numbersStr[i]);
+//   numbersArr.push(digit);
+//   } 
+//   const powArr = numbersArr.reduce(function(acc,currentValue){
+//   const  digitPow =  Math.pow(currentValue,numbersArr.length);
+//   if( acc === undefined){
+//     acc = [];
+//   }
+//   acc.push(digitPow);
+//   return acc;    
+ 
+//     },[]);
+//   const sumAccPow = powArr.reduce(function name(acc,currentValue) {
+//     return acc + currentValue;    
+//   },0);
+//     if (n === sumAccPow) {
+//      console.log( n + `  it's Armstrong number ` + `//`+true);      
+//     }
+//     else
+//     console.log(n + `  don't Armstrong number ` + `//`+false); 
+//   } 
   
-isArmstrong(4);     // false
-isArmstrong(153);   // true
-isArmstrong(371);
-isArmstrong(1634);
-isArmstrong(54748);
-isArmstrong(548834);
-isArmstrong(145320);
+// isArmstrong(4);     // false
+// isArmstrong(153);   // true
+// isArmstrong(371);
+// isArmstrong(1634);
+// isArmstrong(54748);
+// isArmstrong(548834);
+// isArmstrong(145320);
