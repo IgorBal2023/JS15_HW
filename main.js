@@ -84,7 +84,7 @@ const isArmstrong = (n) => {
   numbersArr.push(digit);
   } 
   const powArr = numbersArr.reduce(function(acc,currentValue){
-  const  digitPow =  Math.pow(currentValue,3);
+  const  digitPow =  Math.pow(currentValue,numbersArr.length);
   if( acc === undefined){
     acc = [];
   }
@@ -94,7 +94,7 @@ const isArmstrong = (n) => {
     },[]);
   const sumAccPow = powArr.reduce(function name(acc,currentValue) {
     return acc + currentValue;    
-  })  
+  },0);
     if (n === sumAccPow) {
      console.log( n + `  it's Armstrong number ` + `//`+true);      
     }
@@ -105,4 +105,7 @@ const isArmstrong = (n) => {
 isArmstrong(4);     // false
 isArmstrong(153);   // true
 isArmstrong(371);
+isArmstrong(1634);
+isArmstrong(54748);
+isArmstrong(548834);
 isArmstrong(145320);
