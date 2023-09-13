@@ -72,28 +72,44 @@ const start = (nameTest) => {
 // generatePassword(16);
 
 // ==========================================================================
-
-nameTest = `Prime numbers`;
+nameTest = `Get integer part of number and decimal`;
 start(nameTest);
 
-const isPrime = (numberPrime) => {
-  if (numberPrime <= 1){
-    return false;
+const splitNumber = (numSplit) =>{
+  let numSP = Math.trunc(numSplit);
+  let decimal = numSplit - numSP;
+  if (decimal != 0)
+  {decimal = decimal.toFixed(2)*100;}
+  
+  console.log(`{int: `+numSplit+`, decimal: `+decimal+ `}`);
   }
-for (let i = 2; i <= numberPrime-1; i++){
-          if (numberPrime % i === 0){
-         return false;
-      }
-    }
-      return true;          
-}
-console.log(isPrime(1));   // false
-console.log(isPrime(4));
-console.log(isPrime(6));
-console.log(isPrime(5));   // true
-console.log(isPrime(9));  
-console.log(isPrime(31));
-console.log(isPrime(37));
+
+splitNumber(2);   // {int: 2, decimal: 0}
+splitNumber(2.34);  // {int: 2, decimal: 34}
+
+// ==========================================================================
+
+// nameTest = `Prime numbers`;
+// start(nameTest);
+
+// const isPrime = (numberPrime) => {
+//   if (numberPrime <= 1){
+//     return false;
+//   }
+// for (let i = 2; i <= numberPrime-1; i++){
+//           if (numberPrime % i === 0){
+//          return false;
+//       }
+//     }
+//       return true;          
+// }
+// console.log(isPrime(1));   // false
+// console.log(isPrime(4));
+// console.log(isPrime(6));
+// console.log(isPrime(5));   // true
+// console.log(isPrime(9));  
+// console.log(isPrime(31));
+// console.log(isPrime(37));
 // ==========================================================================
 
 // nameTest = `number is Armstrong Number`;
