@@ -1,150 +1,102 @@
-const start = (nameTest) => {
+const nameTest = () => {
   console.log(``);
-  console.log(nameTest);
+  console.log(startName);
   console.log(``);
 }
-// ==========================================================================
-let nameTest = `Pythagorean theorem`;
-start(nameTest);
 
-const pythagorean = (a, b) => {
-  let c = a*a + b*b;
-  c = Math.sqrt(c);
-  c = c.toFixed(2);
-  console.log(c);
-} ;
+// ================================================================================================
+let startName = `days in year`;
+nameTest();
 
-pythagorean(5, 12);
-pythagorean(22.5, 34.7);
-pythagorean(12.85, 6.57);
-
-// ==========================================================================
-nameTest = `number in money format`;
-start(nameTest);
-
-const formatMoney =(num) => {
-  let absoluteNum = Math.abs(num);
-  let money = absoluteNum.toLocaleString(`en`, { 
-    style: "decimal",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,    
-  });
-  if (num > 0){
-  console.log(`UAH + `+ money)}
-  else {
-    console.log(`UAH - `+ money)}
+const getDaysInYear = (year) => {
+  const firstDaysInYear = new Date(year, 0, 1);
+  const lastDaysInYear = new Date(year, 12, 1);
+  const allDaysInYear = (lastDaysInYear - firstDaysInYear) / (1000 * 60 * 60 * 24);
+  console.log(allDaysInYear);
 };
 
-formatMoney(1232323);      //+ 1,232,323.00
-formatMoney(-23.2132);     //- 23.21 
+getDaysInYear(2021);
+// 365
+getDaysInYear(2020);
+// 366
 
-// ==========================================================================
-nameTest = `number in spaces`;
-start(nameTest);
+// ================================================================================================
+startName = `day of a year`;
+nameTest();
 
-const formatNumber = (num) => {
-  let numSpace = num.toLocaleString(`eu`,{
-    style: "decimal",
-  });
-  console.log(numSpace);
+const getDayNumber = (date) => {
+  const dateYear = new Date(date).getFullYear();
+  const dayOfYear = Math.ceil((new Date(date) - new Date(dateYear, 0, 1)) / (1000 * 60 * 60 * 24));
+  console.log(dayOfYear);
+
 };
 
-formatNumber(1232323);                   // 1 232 323
-formatNumber(1223.65378);                // 1 223.654
+getDayNumber("2023-01-12");  // 12
+getDayNumber("2023-02-26");  // 57
+getDayNumber("2021-11-12");
+getDayNumber("1985-01-18");
 
-// ==========================================================================
-nameTest = `password generator`;
-start(nameTest);
+// ================================================================================================
+startName = ` fiscal quarters`;
+nameTest();
 
-const generatePassword = (n,symbol = `!"#$%&'()*+,-./:;<=>?@[\]^_{|}~0123456789	 
-		ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`) => {
-  let password = ``;
-  for (let i = 0; i < n; ++i) {
-    password += symbol[
-      Math.floor(Math.random() * symbol.length)
-    ];
-    
+const getQuarters = (date) => {
+  const monthQuarters = new Date(date).getMonth();
+  const dayQuarters = new Date(date).getDate();
+  const monthEnter = new Date(date).toLocaleString('en-US', { month: `short` });
+
+  if (monthQuarters <= 2) {
+    console.log(monthEnter + ` ` + dayQuarters + ` is I quarter`);
   }
-  console.log(password);
+  else if (monthQuarters > 2 && monthQuarters <= 5) {
+    console.log(monthEnter + ` ` + dayQuarters + ` is 2 quarter`);
+  }
+  else if (monthQuarters > 5 && monthQuarters <= 8) {
+    console.log(monthEnter + ` ` + dayQuarters + ` is 3 quarter`);
+  }
+  else if (monthQuarters > 8 && monthQuarters <= 11) {
+    console.log(monthEnter + ` ` + dayQuarters + ` is 4 quarter`);
+  }
 };
 
-generatePassword(8);
-generatePassword(16);
+getQuarters("2023-02-26");   // Feb 26 is I quarter
+getQuarters("2023-04-26");
+getQuarters("2023-09-26");
+getQuarters("2023-11-26");
 
-// ==========================================================================
-nameTest = `Get integer part of number and decimal`;
-start(nameTest);
+// ================================================================================================
+startName = ` a function to calculate date diff`;
+nameTest();
 
-const splitNumber = (numSplit) =>{
-  let numSP = Math.trunc(numSplit);
-  let decimal = numSplit - numSP;
-  if (decimal != 0)
-  {decimal = decimal.toFixed(2)*100;}
-  
-  console.log(`{int: `+numSplit+`, decimal: `+decimal+ `}`);
+const calcDateDiff = (startDate, endDate) => {
+  const differenceInTimeMS = new Date(endDate).getTime() - new Date(startDate).getTime();
+  const differenceYear = new Date(endDate).getFullYear() - new Date(startDate).getFullYear();
+  const differenceMonth = new Date(endDate).getMonth() - new Date(startDate).getMonth();
+  const differenceDay = new Date(endDate).getDate() - new Date(startDate).getDate();
+  const differenceInTimeMin = differenceInTimeMS / (1000 * 60);
+  const differenceInTimeHour = Math.floor(differenceInTimeMS / (1000 * 60 * 60));
+  const differenceInTimeHourMin = differenceInTimeMin % 60;
+
+  if (differenceYear !== 0) {
+   return differenceYear + ` years`;
   }
-
-splitNumber(2);   // {int: 2, decimal: 0}
-splitNumber(2.34);  // {int: 2, decimal: 34}
-
-// ==========================================================================
-
-nameTest = `Prime numbers`;
-start(nameTest);
-
-const isPrime = (numberPrime) => {
-  if (numberPrime <= 1){
-    return false;
+  else if (differenceMonth !== 0) {
+    return differenceMonth + ` months`;
   }
-for (let i = 2; i <= numberPrime-1; i++){
-          if (numberPrime % i === 0){
-         return false;
-      }
-    }
-      return true;          
-}
-console.log(isPrime(1));   // false
-console.log(isPrime(4));
-console.log(isPrime(6));
-console.log(isPrime(5));   // true
-console.log(isPrime(9));  
-console.log(isPrime(31));
-console.log(isPrime(37));
-// ==========================================================================
-
-nameTest = `number is Armstrong Number`;
-start(nameTest);
-
-const isArmstrong = (n) => {
-  let numbersStr = n.toString();
-  let numbersArr = [];
-  for (let i = 0;i <= numbersStr.length-1;i++){
-  const digit = parseInt(numbersStr[i]);
-  numbersArr.push(digit);
-  } 
-  const powArr = numbersArr.reduce(function(acc,currentValue){
-  const  digitPow =  Math.pow(currentValue,numbersArr.length);
-  if( acc === undefined){
-    acc = [];
+  else if (differenceDay !== 0) {
+    return differenceDay + ` days`;
   }
-  acc.push(digitPow);
-  return acc;    
- 
-    },[]);
-  const sumAccPow = powArr.reduce(function name(acc,currentValue) {
-    return acc + currentValue;    
-  },0);
-    if (n === sumAccPow) {
-     console.log( n + `  it's Armstrong number ` + `//`+true);      
-    }
-    else
-    console.log(n + `  don't Armstrong number ` + `//`+false); 
-  } 
-  
-isArmstrong(4);     // false
-isArmstrong(153);   // true
-isArmstrong(371);
-isArmstrong(1634);
-isArmstrong(54748);
-isArmstrong(548834);
-isArmstrong(145320);
+  else if (differenceInTimeHour !== 0) {
+    return differenceInTimeHour + ` hours ` + differenceInTimeHourMin + ` minutes`;
+  }
+  else if (differenceInTimeMin !== 0) {
+    return differenceInTimeMin + ` minutes`;
+  }
+};
+
+console.log(calcDateDiff("2023-02-26 14:00", "2023-02-26 14:20"));   // 20 minutes
+console.log(calcDateDiff("2023-02-26 14:00", "2023-02-26 15:30"));   // 1 hours 30 minutes
+console.log(calcDateDiff("2023-02-26 14:00", "2023-02-28 15:30"));   // 2 days
+console.log(calcDateDiff("2023-02-26 14:00", "2023-05-28 15:30"));   // 3 months
+console.log(calcDateDiff("2023-02-26 14:00", "2025-05-28 15:30"));   // 2 years
+debugger;
