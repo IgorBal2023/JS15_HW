@@ -99,4 +99,3 @@ console.log(calcDateDiff("2023-02-26 14:00", "2023-02-26 15:30"));   // 1 hours 
 console.log(calcDateDiff("2023-02-26 14:00", "2023-02-28 15:30"));   // 2 days
 console.log(calcDateDiff("2023-02-26 14:00", "2023-05-28 15:30"));   // 3 months
 console.log(calcDateDiff("2023-02-26 14:00", "2025-05-28 15:30"));   // 2 years
-debugger;
