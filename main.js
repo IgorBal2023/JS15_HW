@@ -7,35 +7,48 @@ const start = () => {
 let nameExercise = `Prototype inheritance`;
 start();
 
- function University  (universityName, dean){
-  this.universityName = universityName;
-  this.dean = dean;
+const university = {
+  universityName: ``,
+  dean: ``,
 };
 
- function Faculty  (universityName, dean,facultyName){
- University.call(this,universityName, dean);
- this.facultyName = facultyName;
- this.groups = {};
-};
+const faculty = Object.create(university, {
+  name: {
+    value: ``,
+    writable: true,
+    enumerable: true,
+  },
+  groups: {
+    nameGroups: ``,
+    value: [],
+    writable: true,
+    enumerable: true,
+  },
+  enlistStudent: {
+    value: function (nameStudent) {
+      if (this.groups.length < 12) {
+        this.groups.push(nameStudent);
+      } else {
+        console.log(`Full group.`);
+      }
+    },
+  },
+});
 
-Faculty.prototype = Object.create(University.prototype);
-Faculty.prototype.constructor = Faculty;
+faculty.universityName = `Polytechnic`; // Polytechnic
+faculty.dean = `Danilo`;
+faculty.name = `Informatik`;
+faculty.groups.nameGroups = `Group A`;
+faculty.enlistStudent(`Homer`);
+faculty.enlistStudent(`Marge`);
+faculty.enlistStudent(`Bart`);
+faculty.enlistStudent(`Taras`);
 
-Faculty.prototype.enlistStudent = function(groupName,studentName){
-  if(!this.groups[groupName]){
-    this.groups[groupName] = [];
-  }
-  if ( this.groups[groupName].length < 12){
-      this.groups[groupName].push(studentName);
-  }else{
-    console.log(`Full groups.`);
-  }
-}
-const university = new University(`Polytechnic`,`Kohen`);
-const faculty = new Faculty(`Polytechnic`,`Kohen`,`Matematic`);
-console.log(faculty.universityName);  // Polytechnic
-faculty.enlistStudent(`Group A`,`Taras`);
-console.log(faculty.groups['Group A']);  // [['Taras']]
+console.log(`Name of the university: ` + faculty.universityName);
+console.log(`Dean's name: ` + faculty.dean);
+console.log(`Faculty name: ` + faculty.name);
+console.log(`Group name: ` + faculty.groups.nameGroups);
+console.log(`Group members: ` + faculty.groups); // [['Taras']]
 
 // ======================================
 nameExercise = `Prototype constructor`;
@@ -71,27 +84,27 @@ function Dog(name, live, breed) {
   this.breed = breed;
 }
 Dog.prototype = Object.create(Mammal.prototype);
-Dog.prototype.whoIsGoodDog = function(){
-  return this.name +` saids gaf-gaf`;
-}
+Dog.prototype.whoIsGoodDog = function () {
+  return this.name + ` barked gaf-gaf`;
+};
 
 function Penguin(name, live, species) {
   Animal.call(this, name, live);
   this.species = species;
 }
 Penguin.prototype = Object.create(Bird.prototype);
-Penguin.prototype.fly = function(){
-  return this.name + ` don\`t fly` 
-}
-Penguin.prototype.swim = function(){
+Penguin.prototype.fly = function () {
+  return this.name + ` don\`t fly`;
+};
+Penguin.prototype.swim = function () {
   return this.name + ` swim`;
-}
+};
 
 const animal = new Animal(`Dog`);
-const mammal = new Mammal(`Humman`,`Hous`);
-const bird = new Bird(`Eagle`,`in mountains`);
-const dog = new Dog(`Dog`,`Dog hous`,`Shephard`);
-const penguin = new Penguin(`Penguin`,`Antarctic`,`Imperor pinguin`);
+const mammal = new Mammal(`Humman`, `Hous`);
+const bird = new Bird(`Eagle`, `in mountains`);
+const dog = new Dog(`Dog`, `Dog hous`, `Shephard`);
+const penguin = new Penguin(`Penguin`, `Antarctic`, `Imperor pinguin`);
 
 console.log(animal.getInfo());
 console.log(mammal.getInfo());
