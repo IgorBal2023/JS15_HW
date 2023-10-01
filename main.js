@@ -135,33 +135,33 @@ console.log(penguin.propertySpecies());
 newTask = `OOP`;
 start();
 
-class Vehicle{
-  constructor(power,gasTank,mass){
-      this.power = power;
-      this.gasTank = gasTank;
-      this.mass = mass;
-      this.maxSpeed = this.calcMaxSpeed();
-      this.gasUsage = this.calcGasUsage();
-      this.gasLevel = this.gasTank;
-      this.start = false; 
-      this.speed = 0; 
+class Vehicle {
+  constructor(power, gasTank, mass) {
+    this.power = power;
+    this.gasTank = gasTank;
+    this.mass = mass;
+    this.maxSpeed = this.calcMaxSpeed();
+    this.gasUsage = this.calcGasUsage();
+    this.gasLevel = this.gasTank;
+    this.start = false;
+    this.speed = 0;
   }
-  calcMaxSpeed(){
-    return 0.84 * this.power/this.mass;
+  calcMaxSpeed() {
+    return (0.84 * this.power) / this.mass;
   }
-  getMaxSpeed(){
+  getMaxSpeed() {
     return this.maxSpeed;
   }
-  calcGasUsage(){
-    return Math.round(this.calcMaxSpeed()/this.power*100);
+  calcGasUsage() {
+    return Math.round((this.calcMaxSpeed() / this.power) * 100);
   }
-  getGasUsage(){
+  getGasUsage() {
     return this.gasUsage;
   }
-  startEngine(){
+  startEngine() {
     this.start = true;
   }
-  stopEngine(){
+  stopEngine() {
     this.start = false;
   }
   drive(speed, distance) {
@@ -179,14 +179,14 @@ class Vehicle{
     } else {
       console.log("Please start a vehicle");
     }
-  };
+  }
 
   addGas(gas) {
     const gasSum = this.gasLevel + gas;
     this.gasLevel = gasSum > this.gasTank ? this.gasTank : gasSum;
-  };
+  }
 
-  printInfo(){
+  printInfo() {
     const info = {
       power: this.power,
       gasTank: this.gasTank,
@@ -195,18 +195,18 @@ class Vehicle{
       gasUsage: this.gasUsage,
       started: this.started,
       speed: this.speed,
-    }
+    };
     console.log(info);
     return info;
   }
 }
-class Car extends Vehicle{
-  constructor(power,gasTank,mass,type,maxPassengerCount){
-    super(power,gasTank,mass)
+class Car extends Vehicle {
+  constructor(power, gasTank, mass, type, maxPassengerCount) {
+    super(power, gasTank, mass);
     this.type = type;
     this.maxPassengerCount = maxPassengerCount;
   }
-  printInfo(){
+  printInfo() {
     const info = super.printInfo();
     info.type = this.type;
     info.maxPassengersCount = this.maxPassengerCount;
@@ -214,31 +214,31 @@ class Car extends Vehicle{
     return info;
   }
 }
-class Bus extends Car{
-  constructor(power,gasTank,mass,type,maxPassengerCount){
-    super(power,gasTank,mass,type,maxPassengerCount)
+class Bus extends Car {
+  constructor(power, gasTank, mass, type, maxPassengerCount) {
+    super(power, gasTank, mass, type, maxPassengerCount);
   }
   passengerCount = 0;
   updatePassengers(passenger) {
     const passengerDiff = this.passengerCount + passenger;
-    if(passengerDiff > this.maxPassengerCount){
+    if (passengerDiff > this.maxPassengerCount) {
       this.passengerCount = this.maxPassengerCount;
-    }else if (passengerDiff < 0){
+    } else if (passengerDiff < 0) {
       this.passengerCount = 0;
-    }else {
+    } else {
       this.passenger = this.passengerCount;
     }
   }
-   printInfo(){
+  printInfo() {
     const info = super.printInfo();
     info.passengerCount = this.passengerCount;
     console.log(info);
     return info;
   }
 }
-const vehicle = new Vehicle(300,150,15);
-const car = new Car(150, 50, 10,`Sedan`,5);
-const bus = new Bus(300, 100, 20,`Bus`,38);
+const vehicle = new Vehicle(300, 150, 15);
+const car = new Car(150, 50, 10, `Sedan`, 5);
+const bus = new Bus(300, 100, 20, `Bus`, 38);
 
 vehicle.startEngine();
 vehicle.drive(50, 100);
