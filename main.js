@@ -55,6 +55,9 @@ const randomTimeCasino = () => {
       const randomNumberCasino = Math.floor(Math.random() * 101);
       let randomColor = Math.floor(Math.random() * 2);
       randomColor = randomColor === 0 ? "black" : "red";
+      if (randomNumberCasino === 0) {
+        randomColor = "green";
+      }  
       const randomEvenOdd =
         randomNumberCasino !== 0 && randomNumberCasino % 2 === 0
           ? "even"
