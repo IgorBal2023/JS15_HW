@@ -81,8 +81,9 @@ class ProductsService {
       console.error(`Error!`);
     }
   }
-  static async updateProduct(id, updateProd) {
+  static async updateProduct(newUpdateProduct) {
     try {
+      const { id, updateProd } = newUpdateProduct;
       const res = await fetch(`https://dummyjson.com/products/${id}`, {
         method: "PUT" /* or PATCH */,
         headers: { "Content-Type": "application/json" },
@@ -106,17 +107,18 @@ class ProductsService {
           }
         );
         if (res.status === 200 || res.status === 204) {
-          console.log(
-            `product with ID ${idDelete[i]} was successfully removed`
-          );
+          const data = await res.json();
+          dataDeleteArr.push(data);
+          // console.log(
+          //   `product with ID ${idDelete[i]} was successfully removed`
+          // );
         } else if (res.status === 404) {
-          console.error(
-            `product with ID ${idDelete[i]} is not in the database`
-          );
+          // console.error(
+          //   `product with ID ${idDelete[i]} is not in the database`
+          // );
         }
-        const data = await res.json();
-        dataDeleteArr.push(data);
       }
+      console.log(dataDeleteArr);
       return dataDeleteArr;
     } catch (error) {
       console.error(`Error!`);
@@ -130,8 +132,11 @@ const newAddProduct = {
 };
 
 const newUpdateProduct = {
-  title: `Honor 8x`,
-  price: 299.99,
+  id: 5,
+  updateProd: {
+    title: `Honor 8x`,
+    price: 299.99,
+  },
 };
 
 const arrIdDelete = [1, 2, 3, 4];
@@ -145,5 +150,5 @@ ProductsService.limitProduct(12, 10, `title,price`);
 ProductsService.getAllCategories();
 ProductsService.getCatigories(`smartphones`);
 ProductsService.addNewProduct(newAddProduct);
-ProductsService.updateProduct(5, newUpdateProduct);
+ProductsService.updateProduct(newUpdateProduct);
 ProductsService.deleteProduct(arrIdDelete);
